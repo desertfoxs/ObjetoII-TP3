@@ -1,6 +1,6 @@
 package oop2.tp3.ejercicio3;
 
-public class Desayuno implements TipoDeGasto{
+public class Desayuno implements TipoDeGasto {
 
     String nombre;
 

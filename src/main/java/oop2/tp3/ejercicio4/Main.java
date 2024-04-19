@@ -2,9 +2,6 @@ package oop2.tp3.ejercicio4;
 
 import org.jdbi.v3.core.Jdbi;
 
-import java.io.IOException;
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -14,28 +11,21 @@ public class Main {
         new SetUpDatabase(jdbi).setUp();
 
         var repo = new PersonaRepository(jdbi);
-        List<Persona> personas = null;
-        try {
-            personas = repo.buscarPorNombre("Vla");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        var personas = repo.buscarPorNombre("Vla");
 
         if (personas != null) {
             for (Persona persona : personas) {
                 System.out.println(persona.nombre() + " " + persona.apellido());
             }
         }
-
-        Persona persona = null;
-
-        try {
-            persona = repo.buscarId(1L);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        else{
+            System.out.println("no se encontro a la persona");
         }
 
-        if (persona != null) {
+        var opcPersona = repo.buscarId(1L);
+
+        if (opcPersona.isPresent()) {
+            Persona persona = opcPersona.get();
             System.out.println(persona.nombre() + " " + persona.apellido());
         }
     }

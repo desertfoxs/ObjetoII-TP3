@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class PersonaRepository {
 
@@ -18,7 +19,7 @@ public class PersonaRepository {
     /**
      * Busca por nombre a parte
      */
-    public List<Persona> buscarPorNombre(String nombreOParte) throws IOException {
+    public List<Persona> buscarPorNombre(String nombreOParte){
         return jdbi.withHandle(handle -> {
             var rs = handle
                     .select("select nombre, apellido from persona where nombre like ?")
@@ -26,8 +27,8 @@ public class PersonaRepository {
 
             var personas = new ArrayList<Persona>();
 
-            if (rs.size() == 0) {
-                throw new IOException("no se encontro la persona");
+            if (rs.isEmpty()) {
+                return personas;
             }
 
             for (Map<String, String> map : rs) {
@@ -45,18 +46,20 @@ public class PersonaRepository {
      * - null si el id no se encuentra en la BD
      * - la instancia de Persona encontrada
      */
-    public Persona buscarId(Long id) throws IOException{
+    public Optional<Persona> buscarId(Long id){
+        //implementar un opcional
+
         return jdbi.withHandle(handle -> {
 
             var rs = handle
                     .select("select nombre, apellido from persona where id_persona = ?")
                     .bind(0, id).mapToMap(String.class).list();
 
-            if (rs.size() == 0) {
-                throw new IOException("no se encontro la persona");
+            if (rs.isEmpty()) {
+                return Optional.empty();
             }
 
-            return new Persona(rs.get(0).get("nombre"), rs.get(0).get("apellido"));
+            return Optional.of(new Persona(rs.get(0).get("nombre"), rs.get(0).get("apellido")));
 
         });
     }

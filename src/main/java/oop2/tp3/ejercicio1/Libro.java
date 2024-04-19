@@ -4,7 +4,7 @@ public interface Libro {
 
     public double calcularCosto(double monto, int diasAlquilado);
 
-    default public int calcularPuntos()
+    default public int calcularPuntos(int diasAlquilados)
     {
         return 0;
     }

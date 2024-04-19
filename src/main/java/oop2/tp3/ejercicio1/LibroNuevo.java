@@ -3,6 +3,7 @@ package oop2.tp3.ejercicio1;
 public class LibroNuevo implements Libro {
 
     private String nombre;
+    private int requisitoDiaAlquilado = 1;
 
     public LibroNuevo(String nombre) {
         this.nombre = nombre;
@@ -15,8 +16,13 @@ public class LibroNuevo implements Libro {
     }
 
     @Override
-    public int calcularPuntos()
+    public int calcularPuntos(int diasAlquilados)
     {
-        return 1;
+        if(diasAlquilados > requisitoDiaAlquilado){
+            return 1;
+        }
+
+        return 0;
+
     }
 }

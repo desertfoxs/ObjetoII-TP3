@@ -11,9 +11,12 @@ public class ReporteDeGastos {
     public ReporteDeGastos() {
     }
 
-    public int imprimir(List<Gasto> gastos) {
+    public String imprimir(List<Gasto> gastos) {
         total = 0;
         gastosDeComida = 0;
+        String ticket;
+
+        ticket = "Expenses " + LocalDate.now() + "\n";
 
         for (Gasto gasto : gastos) {
 
@@ -21,13 +24,15 @@ public class ReporteDeGastos {
             String nombreGasto = gasto.nombreGasto();;
             String marcaExcesoComidas = gasto.exceso();
 
-            System.out.println(nombreGasto + "\t" + gasto.gastoDelServicio() + "\t" + marcaExcesoComidas);
+            ticket += nombreGasto + "\t" + gasto.gastoDelServicio() + "\t" + marcaExcesoComidas + "\n";
 
             total += gasto.gastoDelServicio();
         }
 
-        System.out.println("Gastos de comida: " + gastosDeComida);
-        System.out.println("Total de gastos: " + total);
-        return total;
+        ticket += "Gastos de comida: " + gastosDeComida + "\n";
+        ticket += "Total de gastos: " + total;
+
+        System.out.println(ticket);
+        return ticket;
     }
 }

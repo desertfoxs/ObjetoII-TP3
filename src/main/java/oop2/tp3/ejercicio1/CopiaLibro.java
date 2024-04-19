@@ -11,6 +11,6 @@ public class CopiaLibro {
     }
 
     public int calculoPuntos(int diasAlquilados) {
-        return libro.calcularPuntos();
+        return libro.calcularPuntos(diasAlquilados);
     }
 }

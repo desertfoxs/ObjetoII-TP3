@@ -20,7 +20,7 @@ public class PruebaTest {
 
     Alquiler alquilerElTunel = new Alquiler(elTunelCopia, 5);
     Alquiler alquilerAntesDelFin = new Alquiler(antesDelFinCopia, 3);
-    Alquiler alquilerJuegosDeEnder = new Alquiler(juegosDeEnderCopia, 1);
+    Alquiler alquilerJuegosDeEnder = new Alquiler(juegosDeEnderCopia, 2);
     Alquiler alquilerElLobo = new Alquiler(elLoboCopia, 6);
     Cliente yo = new Cliente("Javier");
 
@@ -33,7 +33,7 @@ public class PruebaTest {
         yo.alquilar(alquilerElLobo);
 
 
-        assertEquals(19.0, yo.calcularDeuda());
+        assertEquals(22.0, yo.calcularDeuda());
         assertEquals(5, yo.calcularPuntosObtenidos());
     }
 

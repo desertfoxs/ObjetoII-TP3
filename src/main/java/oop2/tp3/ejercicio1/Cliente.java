@@ -25,6 +25,8 @@ public class Cliente {
     public int calcularPuntosObtenidos(){
         int puntosAlquilerFrecuente = 0;
 
+
+        //agregar  && alquiler.diasAlquilados() > 1)
         for (Alquiler alquiler : alquileres) {
             // sumo puntos por alquiler
             puntosAlquilerFrecuente++;

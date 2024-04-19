@@ -1,6 +1,6 @@
 package oop2.tp3.ejercicio3;
 
-public class Cena implements TipoDeGasto{
+public class Cena implements TipoDeGasto {
 
     String nombre;
 
@@ -13,7 +13,7 @@ public class Cena implements TipoDeGasto{
         return monto;
     }
 
-    @Override
+
     public String nombre() {
         return nombre;
     }
